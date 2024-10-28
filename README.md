@@ -9,3 +9,7 @@
 - 클라이언트 웹서버 실행
 	- cd path\to\publish_output\wwwroot
 	- Start-Process "powershell" -ArgumentList "Start-Process -FilePath 'explorer.exe' 'http://localhost:8000'; python -m http.server 8000"
+
+---
+### 1. 압축 해제후 /Bin/StartServer.bat 실행 후 /Bin/StartClient.bat로 웹서버 구동
+### 2. 클라이언트 테스트 실행시 웹서버 실행 후 http://localhost:8000/ 접속..
