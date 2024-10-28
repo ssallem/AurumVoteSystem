@@ -2,7 +2,7 @@
 * 서버 프로그램 : Asp.Net Core
 * 클라이언트 프로그램 : Blazor WebAssembly
 
-- 배포 명령 : dotnet publish -c Release -o ./publish_output
+- 배포 명령 : dotnet publish -c Release -o publish_output
 
 - 배포시 실제 포트 적용 : AurumVoteSystemClient\Services\VotingApiService.cs (https://localhost:5001)
 
