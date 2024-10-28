@@ -1,0 +1,11 @@
+﻿@page "/"
+
+@inject NavigationManager Navigation
+
+@code {
+    protected override void OnInitialized()
+    {
+        // 페이지가 로드되면 바로 /Vote 경로로 이동
+        Navigation.NavigateTo("/Vote");
+    }
+}

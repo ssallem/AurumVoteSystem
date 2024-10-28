@@ -1,0 +1,138 @@
+﻿@page "/Vote"
+@using AurumVoteSystemClient.Services
+@inject VotingApiService VotingApiService
+@inject IJSRuntime JS // JavaScript 호출을 위한 IJSRuntime 주입
+
+<div class="vote-container">
+    <h3>Aurum 투표 시스템에 오신 것을 환영합니다!</h3>
+    <p>@(string.IsNullOrWhiteSpace(username) ? "이름을 입력해주세요." : $"안녕하세요, {username}님")</p>
+
+    @if (string.IsNullOrWhiteSpace(username))
+    {
+        <div class="input-container">
+            <input @bind="username" placeholder="이름 입력" class="username-input" />
+            <button @onclick="SubmitUsername" class="submit-button">확인</button>
+        </div>
+    }
+    else
+    {
+        @if (voteItems.Count == 0)
+        {
+            <p class="loading-text">투표 항목을 불러오는 중입니다....</p>
+            SubmitUsername();
+        }
+        else
+        {
+            <div class="vote-buttons">
+                @foreach (var item in voteItems)
+                {
+                    <button @onclick="() => SubmitVote(item.Name)" disabled="@hasVoted" class="vote-button">
+                        @item.Name (득표수: @item.VoteCount)
+                    </button>
+                }
+            </div>
+        }
+    }
+
+    @if (hasVoted)
+    {
+        <div class="results-container">
+            <br />
+            <h4>투표 결과</h4>
+            <ul>
+                @foreach (var result in voteResults)
+                {
+                    <li>@result.Key: @result.Value:%</li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+
+@code {
+    private string username;
+    private bool hasVoted = false;
+    private List<VoteItem> voteItems = new List<VoteItem>();
+    private Dictionary<string, double> voteResults = new Dictionary<string, double>();
+
+    private async Task SubmitUsername()
+    {
+        if (!string.IsNullOrWhiteSpace(username))
+        {
+            try
+            {
+                voteItems = await VotingApiService.GetVoteItemsAsync();
+                hasVoted = false;
+                StateHasChanged();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading vote items: " + ex.Message);
+            }
+        }
+    }
+
+    // private async Task SubmitVote(string itemName)
+    // {
+    //     try
+    //     {
+    //         if (await VotingApiService.VoteAsync(username, itemName))
+    //         {
+    //             // hasVoted = true;
+    //             // voteResults = await VotingApiService.GetVoteResultsAsync();
+    //             // StateHasChanged();
+
+
+    //             // 로컬에서 득표수 업데이트
+    //             var selectedItem = voteItems.FirstOrDefault(v => v.Name == itemName);
+    //             if (selectedItem != null)
+    //             {
+    //                 selectedItem.VoteCount++;
+    //             }
+
+    //             hasVoted = true;
+
+    //             // 서버에서 최종 투표 결과 받아오기
+    //             voteResults = await VotingApiService.GetVoteResultsAsync();
+
+    //         }
+    //         else
+    //         {
+    //             Console.WriteLine("이미 투표하셨습니다.");
+    //         }
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Console.WriteLine("Error during voting: " + ex.Message);
+    //     }
+    // }
+    private async Task SubmitVote(string itemName)
+    {
+        try
+        {
+            var response = await VotingApiService.VoteAsync(username, itemName);
+            if (response.IsSuccessStatusCode)
+            {
+                hasVoted = true;
+
+                // 투표 후 항목과 결과 갱신
+                voteItems = await VotingApiService.GetVoteItemsAsync();
+                voteResults = await VotingApiService.GetVoteResultsAsync();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                // 중복 투표 시 경고 메시지 표시
+                await ShowAlert("이미 투표하셨습니다.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error during voting: " + ex.Message);
+        }
+    }
+
+    private async Task ShowAlert(string message)
+    {
+        await JS.InvokeVoidAsync("alert", message);
+    }
+}
