@@ -38,7 +38,7 @@ namespace AurumVoteSystemServer.Data
         public Dictionary<string, double> GetVotePercentage()
         {
             int totalVotes = voteItems.Sum(v => v.VoteCount);
-            return voteItems.ToDictionary(v => v.Name, v => totalVotes > 0 ? (double)v.VoteCount / totalVotes * 100 : 0);
+            return voteItems.ToDictionary(v => v.Name, v => totalVotes > 0 ? Math.Round((double)v.VoteCount / totalVotes * 100, 1) : 0);
         }
     }
 }

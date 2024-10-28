@@ -10,7 +10,8 @@ namespace AurumVoteSystemClient.Services
         {
             // 서버의 기본 주소를 설정 (예: https://localhost:5001)
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:7158"); // 실제 서버 주소로 변경
+            // _httpClient.BaseAddress = new Uri("https://localhost:7158"); // 실제 서버 주소로 변경
+            _httpClient.BaseAddress = new Uri("https://localhost:5001"); // 실제 서버 주소로 변경
         }
 
         public async Task<List<VoteItem>> GetVoteItemsAsync()
@@ -25,13 +26,6 @@ namespace AurumVoteSystemClient.Services
             }
             return null;
         }
-
-        //public async Task<bool> VoteAsync(string username, string itemName)
-        //{
-        //    var response = await _httpClient.PostAsync($"api/voting/vote?username={username}&itemName={itemName}", null);
-        //    return response.IsSuccessStatusCode;
-        //}
-
         public async Task<HttpResponseMessage> VoteAsync(string username, string itemName)
         {
             var url = $"api/voting/vote?username={username}&itemName={itemName}";
