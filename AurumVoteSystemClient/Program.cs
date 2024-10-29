@@ -10,7 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5001") });
 
-// VotingApiService µî·Ï
+// VotingApiService ï¿½ï¿½ï¿½
 builder.Services.AddScoped<VotingApiService>();
 
 await builder.Build().RunAsync();

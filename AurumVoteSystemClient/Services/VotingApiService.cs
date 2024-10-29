@@ -10,7 +10,7 @@ namespace AurumVoteSystemClient.Services
         {
             // 서버의 기본 주소를 설정 (예: https://localhost:5001)
             _httpClient = httpClient;
-            // _httpClient.BaseAddress = new Uri("https://localhost:7158"); // 실제 서버 주소로 변경
+            // _httpClient.BaseAddress = new Uri("https://localhost:7158"); // 디버깅시 사용 주소
             _httpClient.BaseAddress = new Uri("https://localhost:5001"); // 실제 서버 주소로 변경
         }
 

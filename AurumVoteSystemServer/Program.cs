@@ -4,9 +4,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
-builder.Services.AddSingleton<VotingService>(); // VotingService µî·Ï
+builder.Services.AddSingleton<VotingService>();
 
-// CORS ¼³Á¤ Ãß°¡
+// Add logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+// CORS ì •ì±…ì¶”ê°€
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins", builder =>
@@ -19,16 +23,16 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// CORS Á¤Ã¥ Àû¿ë
+// CORS ì •ì±…ì ìš©
 app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // Á¤Àû ÆÄÀÏ »ç¿ë ¼³Á¤ (wwwroot ³» ÆÄÀÏ)
+app.UseStaticFiles(); // ì •ì  íŒŒì¼ ì œê³µ (wwwroot í´ë” ì‚¬ìš©)
 app.UseRouting();
 app.MapControllers();
-app.MapRazorPages(); // Razor ÆäÀÌÁö¸¦ »ç¿ë ¼³Á¤
+app.MapRazorPages(); // Razor í˜ì´ì§€ ë¼ìš°íŒ…
 
-// ±âº» ÆäÀÌÁö·Î Blazor Å¬¶óÀÌ¾ğÆ® ¾ÛÀ» Á¦°ø
+// ê¸°ë³¸ í˜ì´ì§€ë¥¼ Blazor í´ë¼ì´ì–¸íŠ¸ ì•±ìœ¼ë¡œ ì„¤ì •
 app.MapFallbackToFile("index.html");
 
 app.Run();

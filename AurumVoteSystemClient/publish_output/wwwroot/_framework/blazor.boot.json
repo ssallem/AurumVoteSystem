@@ -1,7 +1,7 @@
 {
   "entryAssembly": "AurumVoteSystemClient",
   "resources": {
-    "hash": "sha256-7NO9OqPqUHoVWpUmpChgZYJiekby4rAlfEMRxDfauLs=",
+    "hash": "sha256-WTC//L9ufgxl/1Twy9w4ZL+WkjIVamqtxXr0OWQfNI8=",
     "runtime": {
       "dotnet.6.0.35.jp8w8busyk.js": "sha256-T8noLH7sR5/2L2IUChsmdTPrzvzsRNOKoNnXkdWwXTs=",
       "dotnet.timezones.blat": "sha256-0D+vyaaFBJ8ddk2A3oifRPEGRVV+zR7jhBmMlANx6Zs=",
@@ -11,7 +11,7 @@
       "icudt_no_CJK.dat": "sha256-OxylFgLJlFqixsj+nLxYVsv5iZLvfIKMpLf9hrWaChA="
     },
     "assembly": {
-      "AurumVoteSystemClient.dll": "sha256-3+HHWTCkM3NhHt+iAwjU/xzGCNAJiDgIdM8qcwwML9s=",
+      "AurumVoteSystemClient.dll": "sha256-LTd1c14woQi831ZkJDDIAliPZzUnYyvplQS68bJMeHk=",
       "Microsoft.AspNetCore.Components.dll": "sha256-JBrqEEB6BbGcT+pRsWZinvuyIX/CmYKvHUhcXR1dRJE=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-hpESaiz/lT2I1HOkBl+9BwkBDiPsNr748OBqlXFTjLY=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-5LtolpFz3hUHGNP/PntS2+U0x81saMpMqTnm5FQY5EI=",

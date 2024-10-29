@@ -5,7 +5,7 @@
 
 <div class="vote-container">
     <h3>Aurum 투표 시스템에 오신 것을 환영합니다!</h3>
-    <p>@(string.IsNullOrWhiteSpace(username) ? "이름을 입력해주세요." : $"안녕하세요, {username}님")</p>
+    <p>@(string.IsNullOrWhiteSpace(username) ? "이름을 입력해주세요." : $"안녕하세요, {username}님")</p>    
 
     @if (string.IsNullOrWhiteSpace(username))
     {
@@ -18,11 +18,14 @@
     {
         @if (voteItems.Count == 0)
         {
-            <p class="loading-text">투표 항목을 불러오는 중입니다....</p>
+            <p class="loading-text">투표 항목을 불러오는 중입니다....</p>            
             SubmitUsername();
+
         }
         else
         {
+            <h2 style="color: darkorange; font-weight: bold;"> 선호하는 개발 언어를 투표해주세요!!</h2>
+            <br/>
             <div class="vote-buttons">
                 @foreach (var item in voteItems)
                 {
