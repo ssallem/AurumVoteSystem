@@ -18,8 +18,8 @@ Start-Process "powershell" -ArgumentList "Start-Process -FilePath 'explorer.exe'
 ```	
 
 ---
-### 1. 압축 해제후 /Bat/StartServer.bat 실행 
-### 2. /Bin/StartClient.bat로 웹서버 구동
+### 1. 압축 해제후 csharp/Bat/StartServer.bat 실행 
+### 2. csharp/Bat/StartClient.bat로 웹서버 구동
 ### 3. 클라이언트 테스트 실행시 웹서버 실행 후 http://localhost:8000/ 접속..
 ---
 
