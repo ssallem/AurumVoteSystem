@@ -32,6 +32,9 @@ Start-Process "powershell" -ArgumentList "Start-Process -FilePath 'explorer.exe'
 ---
 ![image](https://github.com/user-attachments/assets/c496b276-bd6e-45b6-b99d-5f263d71db41)
 
+![image](https://github.com/user-attachments/assets/f6b14064-5c2d-47ba-8593-72661c1a8bf4)
+
+## 파이선 미설치 PC는 구동시킬수 없어서 RebexTinyWebServer 프로그램 사용
 ![image](https://github.com/user-attachments/assets/fc2e4118-916a-4f38-8143-5dde610fa558)
 
 ---
